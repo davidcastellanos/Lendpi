@@ -1,2 +1,0 @@
-# Lendpi
-Rappi Project Repository
