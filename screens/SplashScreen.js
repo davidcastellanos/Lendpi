@@ -36,15 +36,14 @@ const SplashScreen = ({navigation}) => {
         >
             <Text style={[styles.title, {
                 color: colors.text
-            }]}>Bienvenido a Lendpi un CrowdLending by Rappi!</Text>
-            <Text style={styles.text}>Regístrate o Inicia Sesión</Text>
+            }]}>Lendpi</Text>
             <View style={styles.button}>
             <TouchableOpacity onPress={()=>navigation.navigate('SignInScreen')}>
                 <LinearGradient
                     colors={['#FF9295', '#FA5C61']}
                     style={styles.signIn}
                 >
-                    <Text style={styles.textSign}>¡Vamos!</Text>
+                    <Text style={styles.textSign}>Continuar</Text>
                     <MaterialIcons
                         name="navigate-next"
                         color="#fff"
@@ -61,7 +60,7 @@ const SplashScreen = ({navigation}) => {
 export default SplashScreen;
 
 const {height} = Dimensions.get("screen");
-const height_logo = height * 0.28;
+const height_logo = height * 0.38;
 
 const styles = StyleSheet.create({
   container: {
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FA5C61'
   },
   header: {
-      flex: 2,
+      flex: 3,
       justifyContent: 'center',
       alignItems: 'center'
   },
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       borderTopLeftRadius: 30,
       borderTopRightRadius: 30,
-      paddingVertical: 50,
+      paddingVertical: 40,
       paddingHorizontal: 30
   },
   logo: {

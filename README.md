@@ -12,13 +12,13 @@
 
     ```bash
   npx react-native init app
-    ```
+  ```
 
 - Descargar los archivos del repositorio de GitHub.
 
     ```bash
   git clone https://github.com/Virteip/Lendpi.git
-    ```
+  ```
 
 - Ingresamos a la carpeta del repositorio.
 
@@ -33,6 +33,7 @@
   ```
 
 - Ingresar a la carpeta raíz del proyecto y eliminar los archivos **App.js** e **index.js**.
+
 - Copie los siguientes archivos y carpetas desde la carpeta **Lendpi** hacia la carpeta raíz del proyecto:
   - assets/
   - components/
@@ -41,7 +42,12 @@
   - App.js
   - Index.js
 
-- Eliminar la carpeta **Lendpi**.
+- Ingresar en el archivo `android/app/build.gradle` y agregar al final del archivo:
+
+    ```
+    apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+    ```
+
 - Descargar los siguientes módulos dentro de la carpeta raíz:
   - yarn add @react-navigation/native
   - yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
@@ -54,5 +60,8 @@
   - yarn add @react-navigation/material-bottom-tabs
   - npm install react-hook-form
   - yarn add @react-native-community/async-storage
+  - yarn add @react-native-community/google-signin
+  
 - Ejecutar la app
+  
   - npx react-native run-android

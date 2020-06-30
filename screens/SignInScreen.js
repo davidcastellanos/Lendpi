@@ -20,6 +20,14 @@ import { AuthContext } from '../components/context';
 
 import Users from '../model/users';
 
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-community/google-signin';
+
+const WebClientID = '8133386440-jl74s0b7u2me6mbfogncubunrbjhlfr7.apps.googleusercontent.com';
+
 const SignInScreen = ({navigation}) => {
 
     const [data, setData] = React.useState({
@@ -112,11 +120,41 @@ const SignInScreen = ({navigation}) => {
         signIn(foundUser);
     }
 
+    GoogleSignin.configure({
+        webClientId: WebClientID, // client ID of type WEB for your server(needed to verify user ID and offline access)
+        offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+        forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+        accountName: '', // [Android] specifies an account name on the device that should be used
+      });
+
+    const googleSignIn = async () => {
+      try {
+        await GoogleSignin.hasPlayServices();
+        const info = await GoogleSignin.signIn();
+        const listData = [info];
+        console.warn({userInfo: info});
+        console.warn(info.user.name);
+        console.warn('listData ->', listData);
+        signIn(listData);
+        setUserInfo(info);
+      } catch (error) {
+        if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+          // user cancelled the login flow
+        } else if (error.code === statusCodes.IN_PROGRESS) {
+          // operation (e.g. sign in) is in progress already
+        } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+          // play services not available or outdated
+        } else {
+          // some other error happened
+        }
+      }
+    };
+
     return (
       <View style={styles.container}>
           <StatusBar backgroundColor='#FA5C61' barStyle="light-content"/>
         <View style={styles.header}>
-            <Text style={styles.text_header}>Ingresa o Regístrate!</Text>
+            <Text style={styles.text_header}>Inicia Sesión</Text>
         </View>
         <Animatable.View
             animation="fadeInUpBig"
@@ -225,18 +263,10 @@ const SignInScreen = ({navigation}) => {
                 </LinearGradient>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('SignUpScreen')}
-                    style={[styles.signIn, {
-                        borderColor: '#FA5C61',
-                        borderWidth: 1,
-                        marginTop: 15
-                    }]}
-                >
-                    <Text style={[styles.textSign, {
-                        color: '#FA5C61'
-                    }]}>Sign Up</Text>
-                </TouchableOpacity>
+                <GoogleSigninButton
+                  style={{ width: 48, height: 48 }}
+                  size={GoogleSigninButton.Size.Wide}
+                  onPress={googleSignIn} />
             </View>
         </Animatable.View>
       </View>
