@@ -15,125 +15,118 @@ import {
 
 import {Component} from 'react';
 import React, {useState, useEffect} from 'react';
-import {MyModal} from './modalSolicitud';
+import {Invest} from './modalPayup';
 
-export class ListAllSolicitudes extends Component {
+export class MyModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
-      loading: true,
-      isModalVisible: false,
-      selectedItem: null,
+      isModalVisible: true,
+      isModalVisibleInvest: false,
+      selectedItem: props.selectedItem,
+      amount: null,
     };
-    this.listup();
-  };
+    this.getCurrentAmount();
+  }
 
-  _onPressItem = (item) => {
-    this._showModal(item);
-  };
+  _setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
 
-  _hideMyModal = () => {
-    this.setState({isModalVisible: false});
-  };
+  _showInvest = (item) => this.setState({isModalVisibleInvest: true});
 
-  _setModalVisible = (visible) => {
-    this.setState({isModalVisible: visible});
-  };
-
-  _showModal = (item) => {
-    this.setState({isModalVisible: true, selectedItem: item});
-  };
-
-  async listup() {
-    let newList = [];
+  async getCurrentAmount() {
     const res = await fetch(
-      'https://lendpi-gateway.herokuapp.com/api-gateway/all-solicitudes/moto',
+      'https://database-lendpi.herokuapp.com/solicitudes/solicitud/' +
+        this.props.selectedItem.id_user,
     );
     const clean = await res.json();
-    for (let row in clean.listaCategoria) {
-      newList.push(clean.listaCategoria[row]);
-      try {
-        const res2 = await fetch(
-          'https://lendpi-gateway.herokuapp.com/api-gateway/worker-profile/' +
-            clean.listaCategoria[row].id_user,
-        );
-        const clean2 = await res2.json();
-        if (clean2.profile[0].first_name != undefined) {
-          clean.listaCategoria[row].name = clean2.profile[0].first_name;
-        } else {
-          continue;
-        }
-      } catch (e) {
-        continue;
-      }
-    }
-    this.setState({
-      items: newList,
-      loading: false,
-    });
+    this.setState({amount: clean.solicitud[0].total_acumulado});
   }
 
   render() {
-    const {modalVisible} = this.state;
+    return (
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={this.state.isModalVisible}
+        onRequestClose={() => {
+          this.props.hideModal();
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.text}> Nombre: </Text>
+            <View style={styles.internalModalView}>
+              <Text style={styles.text}> {this.props.selectedItem.name} </Text>
+            </View>
+            <Text style={styles.text}> Marca: </Text>
+            <View style={styles.internalModalView}>
+              <Text style={styles.text}> {this.props.selectedItem.marca} </Text>
+            </View>
+            <Text style={styles.text}> Modelo: </Text>
+            <View style={styles.internalModalView}>
+              <Text style={styles.text}>
+                {' '}
+                {this.props.selectedItem.modelo}{' '}
+              </Text>
+            </View>
+            <Text style={styles.text}> Year: </Text>
+            <View style={styles.internalModalView}>
+              <Text style={styles.text}>
+                {' '}
+                {this.props.selectedItem.year_model}{' '}
+              </Text>
+            </View>
+            <Text style={styles.text}> Meses a financiar: </Text>
+            <View style={styles.internalModalView}>
+              <Text style={styles.text}>
+                {' '}
+                {this.props.selectedItem.tiempo_financiacion}{' '}
+              </Text>
+            </View>
+            <Text style={styles.text}> Valor Total Requerido: </Text>
+            <View style={styles.internalModalView}>
+              <Text style={styles.text}>
+                {' '}
+                {this.props.selectedItem.valor_financiacion}{' '}
+              </Text>
+            </View>
+            <Text style={styles.text}> Acumulado Hasta El Momento: </Text>
+            <View style={styles.internalModalView}>
+              <Text style={styles.text}> {this.state.amount} </Text>
+            </View>
+            <TouchableOpacity
+              style={styles.SubmitButtonStyle}
+              onPress={() => {
+                this._showInvest(this.state.selectedItem);
+              }}>
+              <Text style={styles.textStyle}>INVERTIR</Text>
+            </TouchableOpacity>
 
-    if (this.state.loading){
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator size="large" animating />
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.container}>
-          <FlatList
-            data={this.state.items}
-            renderItem={({item}) => (
-              <View style={styles.item}>
-                <View style={styles.internalview}>
-                  <Text style={styles.text}> {item.name} </Text>
-                </View>
-                <View style={styles.internalview}>
-                  <Text style={styles.text}> {item.modelo} </Text>
-                </View>
-                <View style={styles.internalview}>
-                  <Text style={styles.text}> {item.valor_financiacion} </Text>
-                </View>
-                <TouchableOpacity
-                  style={styles.SubmitButtonStyle}
-                  activeOpacity={0.5}
-                  onPress={() => {
-                    this._onPressItem(item);
-                  }}>
-                  <Text style={styles.text}> DETALLES </Text>
-                </TouchableOpacity>
-              </View>
-            )}
-            keyExtractor={(item, index) => item.id_user}
-          />
-          {this.state.isModalVisible && (
-            <MyModal
-              selectedItem={this.state.selectedItem}
-              modalVisible={this.state.isModalVisible}
-              hideModal={this._hideMyModal}
+            <TouchableOpacity
+              style={styles.SubmitButtonStyle}
+              onPress={() => {
+                this.props.hideModal();
+              }}>
+              <Text style={styles.textStyle}>CERRAR</Text>
+            </TouchableOpacity>
+          </View>
+          {this.state.isModalVisibleInvest && (
+            <Invest
+              selectedItem={this.props.selectedItem}
+              modalVisible={this.props.isModalVisible}
+              hideModal={this.props.hideModal}
             />
           )}
         </View>
-      );
-    }
+      </Modal>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     margin: 50,
-  },
-  item: {
-    backgroundColor: '#99f794',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 10,
   },
   title: {
     fontSize: 32,
