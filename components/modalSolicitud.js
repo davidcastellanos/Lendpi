@@ -102,7 +102,7 @@ export class MyModal extends Component {
               }}>
               <Text style={styles.textStyle}>INVERTIR</Text>
             </TouchableOpacity>
-​
+
             <TouchableOpacity
               style={styles.SubmitButtonStyle}
               onPress={() => {
