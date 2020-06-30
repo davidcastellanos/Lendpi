@@ -88,7 +88,7 @@ export class Invest extends Component {
                 {this.props.selectedItem.total_acumulado}{' '}
               </Text>
             </View>
-​
+
             <View style={styles.paymentField}>
               <Text style={styles.text}> Ingrese cantidad a transferir: </Text>
               <TextInput
@@ -106,7 +106,7 @@ export class Invest extends Component {
               }}>
               <Text style={styles.textStyle}>REALIZAR TRANSFERENCIA</Text>
             </TouchableOpacity>
-​
+
             <TouchableOpacity
               style={styles.SubmitButtonStyle}
               onPress={() => {
