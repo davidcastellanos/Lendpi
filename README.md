@@ -61,6 +61,7 @@
   - npm install react-hook-form
   - yarn add @react-native-community/async-storage
   - yarn add @react-native-community/google-signin
+  - yarn add @react-native-community/toolbar-android
   
 - Ejecutar la app
   
