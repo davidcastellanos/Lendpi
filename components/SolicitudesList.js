@@ -99,10 +99,10 @@ export class ListAllSolicitudes extends Component {
                 <Card.Content>
                   <Title> Total Solicitado: {item.valor_financiacion} </Title>
                 </Card.Content>
-                <Card.Actions>
+                <Card.Actions >
                   <Button
-                    mode="outlined"
-
+                    mode="contained"
+                    style={styles.button}
                     activeOpacity={0.5}
                     onPress={() => {
                       this._onPressItem(item);
@@ -147,11 +147,9 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
   button: {
-    width: 10,
-    borderRadius: 10,
-    backgroundColor: '#99f794',
-    paddingLeft: 10,
-    paddingRight: 10,
+    borderRadius: 5,
+    backgroundColor: '#FA5C61',
+    margin: 10,
   },
   text: {
     textAlignVertical: 'center',

@@ -141,7 +141,9 @@ const styles = StyleSheet.create({
     height: 650,
   },
   button: {
-    marginTop:20,
+    borderRadius: 5,
+    backgroundColor: '#FA5C61',
+    margin: 10,
   },
   textInternal: {
     textAlignVertical: 'center',

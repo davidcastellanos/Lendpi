@@ -130,7 +130,9 @@ export class Invest extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    marginVertical:10,
+    borderRadius: 5,
+    backgroundColor: '#FA5C61',
+    margin: 10,
   },
   modal:{
     height: 800,
