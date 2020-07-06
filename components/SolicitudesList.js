@@ -2,7 +2,6 @@ import {
   View,
   TextInput,
   Alert,
-  Button,
   StyleSheet,
   FlatList,
   Text,
@@ -13,9 +12,12 @@ import {
   Modal,
 } from 'react-native';
 
+import { useContext } from "react";
 import {Component} from 'react';
 import React, {useState, useEffect} from 'react';
 import {MyModal} from './modalSolicitud';
+import { AuthContext } from '../components/context';
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
 export class ListAllSolicitudes extends Component {
   constructor(props) {
@@ -59,6 +61,9 @@ export class ListAllSolicitudes extends Component {
             clean.listaCategoria[row].id_user,
         );
         const clean2 = await res2.json();
+        if (clean2.profile[0].photo != undefined) {
+          clean.listaCategoria[row].photo = clean2.profile[0].photo;
+        }
         if (clean2.profile[0].first_name != undefined) {
           clean.listaCategoria[row].name = clean2.profile[0].first_name;
         } else {
@@ -85,29 +90,27 @@ export class ListAllSolicitudes extends Component {
       );
     } else {
       return (
-        <View style={styles.container}>
+        <View >
           <FlatList
             data={this.state.items}
             renderItem={({item}) => (
-              <View style={styles.item}>
-                <View style={styles.internalview}>
-                  <Text style={styles.text}> {item.name} </Text>
-                </View>
-                <View style={styles.internalview}>
-                  <Text style={styles.text}> {item.modelo} </Text>
-                </View>
-                <View style={styles.internalview}>
-                  <Text style={styles.text}> {item.valor_financiacion} </Text>
-                </View>
-                <TouchableOpacity
-                  style={styles.SubmitButtonStyle}
-                  activeOpacity={0.5}
-                  onPress={() => {
-                    this._onPressItem(item);
-                  }}>
-                  <Text style={styles.text}> DETALLES </Text>
-                </TouchableOpacity>
-              </View>
+                <Card style={styles.card}>
+                <Card.Title title={item.name} subtitle={item.modelo} elevation='2' Theme/>
+                <Card.Content>
+                  <Title> Total Solicitado: {item.valor_financiacion} </Title>
+                </Card.Content>
+                <Card.Actions>
+                  <Button
+                    mode="outlined"
+
+                    activeOpacity={0.5}
+                    onPress={() => {
+                      this._onPressItem(item);
+                    }}>
+                    DETALLES
+                  </Button>
+                </Card.Actions>
+                </Card>
             )}
             keyExtractor={(item, index) => item.id_user}
           />
@@ -129,8 +132,9 @@ export class ListAllSolicitudes extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 50,
+  card: {
+    elevation:3,
+    margin: 5,
   },
   item: {
     backgroundColor: '#99f794',
