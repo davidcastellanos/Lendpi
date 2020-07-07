@@ -2,7 +2,6 @@ import {
   View,
   TextInput,
   Alert,
-  Button,
   StyleSheet,
   FlatList,
   Text,
@@ -10,11 +9,11 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
-  Modal,
 } from 'react-native';
 
 import {Component} from 'react';
 import React, {useState, useEffect} from 'react';
+import { Avatar, Button, Card, Title, Modal, Portal, Provider } from 'react-native-paper';
 
 export class Invest extends Component {
   constructor(props) {
@@ -24,10 +23,8 @@ export class Invest extends Component {
       amount: null,
       idSolicitud: this.props.selectedItem.id_solicitud,
       montoInvertido: null,
-      idInvestor: 24278261,
+      idInvestor: props.idInvestor,
       idWorker: this.props.selectedItem.id_user,
-      //El id del investor hay que pasarlo como un prop una vez se tenga la sesion del usuario investor
-      // recordar quitarlo asi como esta quemado en el codigo
     };
   }
 
@@ -65,23 +62,25 @@ export class Invest extends Component {
 
   render() {
     return (
+      <Provider>
+      <Portal>
       <Modal
-        animationType="slide"
         transparent={false}
         visible={this.state.isModalVisibleInvest}
         onRequestClose={() => {
           this._hideMyModal();
-        }}>
+        }}
+        contentContainerStyle={styles.modal}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.text}> Valor Total Requerido: </Text>
+            <Text> Valor Total Requerido: </Text>
             <View style={styles.internalModalView}>
               <Text style={styles.text}>
                 {' '}
                 {this.props.selectedItem.valor_financiacion}{' '}
               </Text>
             </View>
-            <Text style={styles.text}> Acumulado Hasta El Momento: </Text>
+            <Text> Acumulado Hasta El Momento: </Text>
             <View style={styles.internalModalView}>
               <Text style={styles.text}>
                 {' '}
@@ -97,48 +96,56 @@ export class Invest extends Component {
                 {' '}
               </TextInput>
             </View>
-            <TouchableOpacity
-              style={styles.TransferButtonStyle}
+            <Button
+              icon="bank"
+              mode="contained"
               onPress={() => {
                 this.payup(this.state.amount);
                 this._hideMyModal();
                 this.props.hideModal();
-              }}>
-              <Text style={styles.textStyle}>REALIZAR TRANSFERENCIA</Text>
-            </TouchableOpacity>
+              }}
+              style={styles.button}>
+              REALIZAR TRANSFERENCIA
+            </Button>
 
-            <TouchableOpacity
-              style={styles.SubmitButtonStyle}
+            <Button
+              icon="close-box-outline"
+              mode="contained"
               onPress={() => {
                 this._hideMyModal();
-              }}>
-              <Text style={styles.textStyle}>CERRAR</Text>
-            </TouchableOpacity>
+              }}
+              style={styles.button}>
+              CERRAR
+            </Button>
           </View>
         </View>
       </Modal>
+    </Portal>
+  </Provider>
     );
   }
 }
 
 const styles = StyleSheet.create({
   button: {
-    width: 10,
-    borderRadius: 10,
-    backgroundColor: '#99f794',
-    paddingLeft: 10,
-    paddingRight: 10,
+    borderRadius: 5,
+    backgroundColor: '#FA5C61',
+    margin: 10,
+  },
+  modal:{
+    height: 800,
   },
   text: {
     textAlignVertical: 'center',
     textAlign: 'center',
     fontWeight: 'bold',
     height: 30,
+    fontSize: 19,
   },
   internalModalView: {
-    backgroundColor: 'lightgrey',
-    borderRadius: 20,
+    backgroundColor: '#e3ffe7',
     marginVertical: 5,
+    paddingLeft:10,
   },
   TransferButtonStyle: {
     marginTop: 10,
@@ -169,7 +176,7 @@ const styles = StyleSheet.create({
   modalView: {
     margin: 20,
     backgroundColor: 'white',
-    borderRadius: 20,
+    borderRadius: 5,
     padding: 20,
     elevation: 0.5,
   },
@@ -183,5 +190,6 @@ const styles = StyleSheet.create({
     padding: 20,
     marginTop: 100,
     borderRadius: 20,
+    marginBottom: 100,
   },
 });
