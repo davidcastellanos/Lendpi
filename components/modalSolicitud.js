@@ -2,6 +2,7 @@ import {
   View,
   TextInput,
   Alert,
+  Button,
   StyleSheet,
   FlatList,
   Text,
@@ -9,12 +10,12 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
+  Modal,
 } from 'react-native';
 
 import {Component} from 'react';
 import React, {useState, useEffect} from 'react';
 import {Invest} from './modalPayup';
-import { Avatar, Button, Card, Title, Modal, Portal, Provider } from 'react-native-paper';
 
 export class MyModal extends Component {
   constructor(props) {
@@ -24,7 +25,6 @@ export class MyModal extends Component {
       isModalVisibleInvest: false,
       selectedItem: props.selectedItem,
       amount: null,
-      idInvestor: props.idInvestor,
     };
     this.getCurrentAmount();
   }
@@ -46,91 +46,80 @@ export class MyModal extends Component {
 
   render() {
     return (
-      <Provider>
-      <Portal>
       <Modal
-        transparency={true}
+        animationType="slide"
+        transparent={false}
         visible={this.state.isModalVisible}
-        onDismiss={() => {
+        onRequestClose={() => {
           this.props.hideModal();
-        }}
-        contentContainerStyle={styles.modal}>
+        }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.textTitle}> Nombre: </Text>
+            <Text style={styles.text}> Nombre: </Text>
             <View style={styles.internalModalView}>
-              <Text style={styles.textInternal}> {this.props.selectedItem.name} </Text>
+              <Text style={styles.text}> {this.props.selectedItem.name} </Text>
             </View>
-            <Text style={styles.textTitle}> Marca: </Text>
+            <Text style={styles.text}> Marca: </Text>
             <View style={styles.internalModalView}>
-              <Text style={styles.textInternal}> {this.props.selectedItem.marca} </Text>
+              <Text style={styles.text}> {this.props.selectedItem.marca} </Text>
             </View>
-            <Text style={styles.textTitle}> Modelo: </Text>
+            <Text style={styles.text}> Modelo: </Text>
             <View style={styles.internalModalView}>
-              <Text style={styles.textInternal}>
+              <Text style={styles.text}>
                 {' '}
                 {this.props.selectedItem.modelo}{' '}
               </Text>
             </View>
-            <Text style={styles.textTitle}> Year: </Text>
+            <Text style={styles.text}> Year: </Text>
             <View style={styles.internalModalView}>
-              <Text style={styles.textInternal}>
+              <Text style={styles.text}>
                 {' '}
                 {this.props.selectedItem.year_model}{' '}
               </Text>
             </View>
-            <Text style={styles.textTitle}> Meses a financiar: </Text>
+            <Text style={styles.text}> Meses a financiar: </Text>
             <View style={styles.internalModalView}>
-              <Text style={styles.textInternal}>
+              <Text style={styles.text}>
                 {' '}
                 {this.props.selectedItem.tiempo_financiacion}{' '}
               </Text>
             </View>
-            <Text style={styles.textTitle}> Valor Total Requerido: </Text>
+            <Text style={styles.text}> Valor Total Requerido: </Text>
             <View style={styles.internalModalView}>
-              <Text style={styles.textInternal}>
+              <Text style={styles.text}>
                 {' '}
                 {this.props.selectedItem.valor_financiacion}{' '}
               </Text>
             </View>
-            <Text style={styles.textTitle}> Acumulado Hasta El Momento: </Text>
+            <Text style={styles.text}> Acumulado Hasta El Momento: </Text>
             <View style={styles.internalModalView}>
-              <Text style={styles.textInternal}> {this.state.amount} </Text>
+              <Text style={styles.text}> {this.state.amount} </Text>
             </View>
-
-            <Button
-              icon="currency-usd"
-              mode="contained"
+            <TouchableOpacity
+              style={styles.SubmitButtonStyle}
               onPress={() => {
                 this._showInvest(this.state.selectedItem);
-              }}
-              style={styles.button}>
-              INVERTIR
-            </Button>
+              }}>
+              <Text style={styles.textStyle}>INVERTIR</Text>
+            </TouchableOpacity>
 
-            <Button
-              icon="close-box-outline"
-              mode="contained"
+            <TouchableOpacity
+              style={styles.SubmitButtonStyle}
               onPress={() => {
                 this.props.hideModal();
-              }}
-              style={styles.button}>
-              CERRAR
-            </Button>
-
+              }}>
+              <Text style={styles.textStyle}>CERRAR</Text>
+            </TouchableOpacity>
           </View>
           {this.state.isModalVisibleInvest && (
             <Invest
               selectedItem={this.props.selectedItem}
               modalVisible={this.props.isModalVisible}
               hideModal={this.props.hideModal}
-              idInvestor={this.state.idInvestor}
             />
           )}
         </View>
       </Modal>
-      </Portal>
-    </Provider>
     );
   }
 }
@@ -139,25 +128,40 @@ const styles = StyleSheet.create({
   container: {
     margin: 50,
   },
-  modal: {
-    height: 650,
+  title: {
+    fontSize: 32,
   },
   button: {
-    borderRadius: 5,
-    backgroundColor: '#FA5C61',
-    margin: 10,
+    width: 10,
+    borderRadius: 10,
+    backgroundColor: '#99f794',
+    paddingLeft: 10,
+    paddingRight: 10,
   },
-  textInternal: {
+  text: {
     textAlignVertical: 'center',
     textAlign: 'center',
     fontWeight: 'bold',
     height: 30,
-    fontSize: 19,
+  },
+  internalview: {
+    backgroundColor: 'lightgrey',
+    borderRadius: 20,
+    marginVertical: 5,
   },
   internalModalView: {
-    backgroundColor: '#fcfcfc',
+    backgroundColor: 'lightgrey',
+    borderRadius: 20,
     marginVertical: 5,
-    paddingLeft:10,
+  },
+  SubmitButtonStyle: {
+    marginTop: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#00BCD4',
+    borderRadius: 30,
   },
   centeredView: {
     flex: 1,
@@ -165,12 +169,20 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    margin: 10,
-    backgroundColor: '#fff',
+    margin: 20,
+    backgroundColor: '#ffc085',
+    borderRadius: 20,
     padding: 20,
-    borderRadius: 5,
+    shadowColor: '#000',
+    elevation: 0.5,
   },
-  textTitle: {
-    marginTop:10,
-  }
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
 });

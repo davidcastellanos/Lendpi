@@ -4,7 +4,7 @@ import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-const HomeScreen = ({navigation}) => {
+const InvestorHomeScreen = ({navigation}) => {
   const urlPhotoUser = 'https://lh3.googleusercontent.com/a-/AOh14GgHJIySggFeLFc4LPmnDSVY4FHX2dd-TYz3o-ODGH0=s96-c';
   const nameUser = 'Julián Sandoval';
 
@@ -57,12 +57,19 @@ const HomeScreen = ({navigation}) => {
         />
         <Text style={styles.textHi}>Hola,</Text>
         <Text style={styles.textPhoto}>{ nameUser }</Text>
-        <Card style={styles.card}>
-          <Card.Content>
-            <Title>Monto Solicitado</Title>
-            <Text style={styles.amount}>{this.state.valor_financiacion}</Text>
-          </Card.Content>
-        </Card>
+        <TouchableOpacity onPress={checkSolicitud}>
+          <LinearGradient
+            colors={['white', 'white']}
+            style={styles.lend}
+          >
+          <MaterialIcons
+            name="attach-money"
+            color="#FA5C61"
+            size={24}
+          />
+          <Text style={styles.textButton}>Solicitar Financiación</Text>
+          </LinearGradient>
+        </TouchableOpacity>
         <TouchableOpacity onPress={checkEstado}>
           <LinearGradient
             colors={['white', 'white']}
@@ -107,16 +114,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E0E0E0'
   },
-  card: {
-    marginTop: 50,
-    width: 250,
-    height: 120,
-    alignSelf: 'center',
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
   textButton: {
     color: '#FA5C61',
     fontWeight: 'bold',
@@ -135,4 +132,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeScreen;
+export default InvestorHomeScreen;
