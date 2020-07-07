@@ -1,9 +1,14 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { HistorialInversiones } from "../components/HistorialInversiones";
+
+import{ AuthContext } from '../components/context';
 
 const InversionesScreen = ({navigation}) => {
+  const { getDataUser } = React.useContext(AuthContext);
+  const userEmail = getDataUser().userEmail;
+
     return (
-      <Text>Holi!</Text>
+      <HistorialInversiones email={userEmail} />
     );
 };
 

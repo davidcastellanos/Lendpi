@@ -4,6 +4,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const ProductosScreen = ( {navigation} ) => {
+
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Productos</Text>
@@ -36,8 +37,6 @@ const ProductosScreen = ( {navigation} ) => {
       </View>
     );
 };
-
-export default ProductosScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -78,3 +77,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 });
+
+export default ProductosScreen;
