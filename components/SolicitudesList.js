@@ -13,8 +13,8 @@ import {
 } from 'react-native';
 
 import { useContext } from "react";
-import {Component} from 'react';
-import React, {useState, useEffect} from 'react';
+import { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {MyModal} from './modalSolicitud';
 import { AuthContext } from '../components/context';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
@@ -27,7 +27,9 @@ export class ListAllSolicitudes extends Component {
       loading: true,
       isModalVisible: false,
       selectedItem: null,
+      id: null,
     };
+    this.getIdInvestor();
     this.listup();
   };
 
@@ -46,6 +48,16 @@ export class ListAllSolicitudes extends Component {
   _showModal = (item) => {
     this.setState({isModalVisible: true, selectedItem: item});
   };
+
+  async getIdInvestor() {
+    const urlIdInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/investor/id/';
+    const data = await fetch(urlIdInvestor + this.props.email);
+    const res = await data.json();
+    const idInvestor = res.uuid[0];
+    this.setState({
+      id: idInvestor,
+    });
+  }
 
   async listup() {
     let newList = [];
@@ -121,6 +133,7 @@ export class ListAllSolicitudes extends Component {
               selectedItem={this.state.selectedItem}
               modalVisible={this.state.isModalVisible}
               hideModal={this._hideMyModal}
+              idInvestor={this.state.id}
             />
 
           )}

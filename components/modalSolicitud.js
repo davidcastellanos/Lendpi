@@ -24,6 +24,7 @@ export class MyModal extends Component {
       isModalVisibleInvest: false,
       selectedItem: props.selectedItem,
       amount: null,
+      idInvestor: props.idInvestor,
     };
     this.getCurrentAmount();
   }
@@ -123,6 +124,7 @@ export class MyModal extends Component {
               selectedItem={this.props.selectedItem}
               modalVisible={this.props.isModalVisible}
               hideModal={this.props.hideModal}
+              idInvestor={this.state.idInvestor}
             />
           )}
         </View>

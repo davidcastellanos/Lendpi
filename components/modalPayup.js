@@ -23,10 +23,8 @@ export class Invest extends Component {
       amount: null,
       idSolicitud: this.props.selectedItem.id_solicitud,
       montoInvertido: null,
-      idInvestor: 24278261,
+      idInvestor: props.idInvestor,
       idWorker: this.props.selectedItem.id_user,
-      //El id del investor hay que pasarlo como un prop una vez se tenga la sesion del usuario investor
-      // recordar quitarlo asi como esta quemado en el codigo
     };
   }
 

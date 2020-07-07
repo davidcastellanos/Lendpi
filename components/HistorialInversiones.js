@@ -11,16 +11,20 @@ export class HistorialInversiones extends Component {
       id_worker: [],
       name_workers: [],
       monto_invertido: [],
+      email: props.email,
     };
     this.hisInvestor();
   }
 
   async hisInvestor() {
-    const idInvestor = 1098707946;
+    const urlIdInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/investor/id/';
+    const dataId = await fetch(urlIdInvestor + this.props.email);
+    const res = await dataId.json();
+    const idInvestor = res.uuid[0];
     const urlHistorialInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/all/historial_inversiones/';
+    const urlPerfilWorker = 'https://lendpi-gateway.herokuapp.com/api-gateway/worker-profile/';
     const response = await fetch(urlHistorialInvestor + idInvestor);
     const data = await response.json();
-    console.log(data.listTotalInvest.length);
     this.setState({
       fecha: [
         data.listTotalInvest[data.listTotalInvest.length - 1].fecha.slice(0,10),
@@ -38,18 +42,13 @@ export class HistorialInversiones extends Component {
         data.listTotalInvest[data.listTotalInvest.length - 3].monto_invertido,
       ]
     });
-    this.nameWorkers();
-  }
-
-  async nameWorkers() {
-    const urlPerfilWorker = 'https://lendpi-gateway.herokuapp.com/api-gateway/worker-profile/';
     for (let itr = 0; itr <= 2; itr++) {
       const response = await fetch(urlPerfilWorker + this.state.id_worker[itr]);
       const data = await response.json();
       this.setState({
         name_workers: this.state.name_workers.concat([data.profile[0].first_name + ' ' + data.profile[0].last_name])
       });
-    }
+    };
   }
 
   render() {
@@ -59,6 +58,7 @@ export class HistorialInversiones extends Component {
         <Image
           source={require('../assets/historial_inversiones.png')}
           style={styles.image}
+          onPress={() => {this.state.hisInvestor()}}
         />
         <DataTable style={styles.datatable}>
 
@@ -71,19 +71,19 @@ export class HistorialInversiones extends Component {
           <DataTable.Row>
             <DataTable.Cell>{this.state.fecha[0]}</DataTable.Cell>
             <DataTable.Cell>{this.state.name_workers[0]}</DataTable.Cell>
-            <DataTable.Cell numeric>{this.state.monto_invertido[0]}</DataTable.Cell>
+            <DataTable.Cell numeric>$ {this.state.monto_invertido[0]}</DataTable.Cell>
           </DataTable.Row>
 
           <DataTable.Row>
             <DataTable.Cell>{this.state.fecha[1]}</DataTable.Cell>
             <DataTable.Cell>{this.state.name_workers[1]}</DataTable.Cell>
-            <DataTable.Cell numeric>{this.state.monto_invertido[1]}</DataTable.Cell>
+            <DataTable.Cell numeric>$ {this.state.monto_invertido[1]}</DataTable.Cell>
           </DataTable.Row>
 
           <DataTable.Row>
             <DataTable.Cell>{this.state.fecha[2]}</DataTable.Cell>
             <DataTable.Cell>{this.state.name_workers[2]}</DataTable.Cell>
-            <DataTable.Cell numeric>{this.state.monto_invertido[2]}</DataTable.Cell>
+            <DataTable.Cell numeric>$ {this.state.monto_invertido[2]}</DataTable.Cell>
           </DataTable.Row>
 
         </DataTable>
@@ -113,7 +113,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E0E0E0',
     marginTop: 30,
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
   }
 });

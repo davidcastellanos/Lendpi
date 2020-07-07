@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card, Title } from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { ScrollView, Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
+import { AuthContext } from '../components/context';
+
 const HomeScreen = ({navigation}) => {
-  const urlPhotoUser = 'https://lh3.googleusercontent.com/a-/AOh14GgHJIySggFeLFc4LPmnDSVY4FHX2dd-TYz3o-ODGH0=s96-c';
-  const nameUser = 'Julián Sandoval';
+  const { getDataUser } = useContext(AuthContext);
+  const urlPhotoUser = getDataUser().userPhoto;
+  const nameUser = getDataUser().userName;
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image
         style={styles.tinyLogo}
-        source={{
-          uri: urlPhotoUser,
-        }}
+        source={{ uri: urlPhotoUser }}
       />
       <Text style={styles.textHi}>Hola,</Text>
-      <Text style={styles.textPhoto}>{ nameUser }</Text>
+      <Text style={styles.textPhoto}>{nameUser}</Text>
       <Card style={styles.card}>
         <Card.Content>
           <Title style={styles.cardTitle}>Tu saldo</Title>
