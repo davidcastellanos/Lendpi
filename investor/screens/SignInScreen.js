@@ -24,22 +24,30 @@ const SignInScreen = ({navigation}) => {
     try {
       await GoogleSignin.hasPlayServices();
       const info = await GoogleSignin.signIn();
-      const urlNewInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/new-investor';
-      await fetch(urlNewInvestor, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        first_name: info.user.givenName,
-        last_name: info.user.familyName,
-        email: info.user.email,
-        token: info.idToken,
-        photo: info.user.photo
-      })
-    })
+      const urlIdInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/investor/id/';
+      const res = await fetch(urlIdInvestor + info.user.email);
+      const idInvestor = await res.json();
+
+      if (idInvestor.uuid == 0) {
+        const urlNewInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/new-investor';
+        await fetch(urlNewInvestor, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            first_name: info.user.givenName,
+            last_name: info.user.familyName,
+            email: info.user.email,
+            token: info.idToken,
+            photo: info.user.photo
+          })
+        })
+      }
+
     signIn([info]);
+
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow

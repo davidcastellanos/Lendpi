@@ -99,7 +99,7 @@ const App = () => {
   };
 
   const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState);
-  
+ 
   const authContext = React.useMemo(() => ({
     signIn: async(foundUser) => {
       const userName = foundUser[0].user.givenName;
@@ -124,13 +124,16 @@ const App = () => {
         console.error(error);
       }
       dispatch({ type: 'LOGOUT' });
-    } ,
+    },
+
     toggleTheme: () => {
       setIsDarkTheme( isDarkTheme => !isDarkTheme );
     },
+
     getDataUser: () => {
       return loginState
-    }
+    },
+
   }), []);
 
   useEffect(() => {

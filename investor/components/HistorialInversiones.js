@@ -17,37 +17,100 @@ export class HistorialInversiones extends Component {
   }
 
   async hisInvestor() {
+    //Obtener el uuid del investor
     const urlIdInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/investor/id/';
     const dataId = await fetch(urlIdInvestor + this.props.email);
     const res = await dataId.json();
     const idInvestor = res.uuid[0];
+    //Obtener todo el historial de inversiones del investor
     const urlHistorialInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/all/historial_inversiones/';
     const urlPerfilWorker = 'https://lendpi-gateway.herokuapp.com/api-gateway/worker-profile/';
     const response = await fetch(urlHistorialInvestor + idInvestor);
     const data = await response.json();
-    this.setState({
-      fecha: [
-        data.listTotalInvest[data.listTotalInvest.length - 1].fecha.slice(0,10),
-        data.listTotalInvest[data.listTotalInvest.length - 2].fecha.slice(0,10),
-        data.listTotalInvest[data.listTotalInvest.length - 3].fecha.slice(0,10),
-      ],
-      id_worker: [
-        data.listTotalInvest[data.listTotalInvest.length - 1].id_worker,
-        data.listTotalInvest[data.listTotalInvest.length - 2].id_worker,
-        data.listTotalInvest[data.listTotalInvest.length - 3].id_worker,
-      ],
-      monto_invertido: [
-        data.listTotalInvest[data.listTotalInvest.length - 1].monto_invertido,
-        data.listTotalInvest[data.listTotalInvest.length - 2].monto_invertido,
-        data.listTotalInvest[data.listTotalInvest.length - 3].monto_invertido,
-      ]
-    });
-    for (let itr = 0; itr <= 2; itr++) {
-      const response = await fetch(urlPerfilWorker + this.state.id_worker[itr]);
-      const data = await response.json();
+
+    //Guarda las últimas 3 inversiones
+    if (data.listTotalInvest.length == 0) {
       this.setState({
-        name_workers: this.state.name_workers.concat([data.profile[0].first_name + ' ' + data.profile[0].last_name])
+        fecha: [
+          '',
+          '',
+          '',
+        ],
+        id_worker: [
+          '',
+          '',
+          '',
+        ],
+        monto_invertido: [
+          '',
+          '',
+          '',
+        ]
       });
+    } else if (data.listTotalInvest.length == 1) {
+      this.setState({
+        fecha: [
+          data.listTotalInvest[data.listTotalInvest.length - 1].fecha.slice(0,10),
+          '',
+          '',
+        ],
+        id_worker: [
+          data.listTotalInvest[data.listTotalInvest.length - 1].id_worker,
+          '',
+          '',
+        ],
+        monto_invertido: [
+          data.listTotalInvest[data.listTotalInvest.length - 1].monto_invertido,
+          '',
+          '',
+        ]
+      });
+    } else if (data.listTotalInvest.length == 2) {
+      this.setState({
+        fecha: [
+          data.listTotalInvest[data.listTotalInvest.length - 1].fecha.slice(0,10),
+          data.listTotalInvest[data.listTotalInvest.length - 2].fecha.slice(0,10),
+          '',
+        ],
+        id_worker: [
+          data.listTotalInvest[data.listTotalInvest.length - 1].id_worker,
+          data.listTotalInvest[data.listTotalInvest.length - 2].id_worker,
+          '',
+        ],
+        monto_invertido: [
+          data.listTotalInvest[data.listTotalInvest.length - 1].monto_invertido,
+          data.listTotalInvest[data.listTotalInvest.length - 2].monto_invertido,
+          '',
+        ]
+      });
+    } else {
+      this.setState({
+        fecha: [
+          data.listTotalInvest[data.listTotalInvest.length - 1].fecha.slice(0,10),
+          data.listTotalInvest[data.listTotalInvest.length - 2].fecha.slice(0,10),
+          data.listTotalInvest[data.listTotalInvest.length - 3].fecha.slice(0,10),
+        ],
+        id_worker: [
+          data.listTotalInvest[data.listTotalInvest.length - 1].id_worker,
+          data.listTotalInvest[data.listTotalInvest.length - 2].id_worker,
+          data.listTotalInvest[data.listTotalInvest.length - 3].id_worker,
+        ],
+        monto_invertido: [
+          data.listTotalInvest[data.listTotalInvest.length - 1].monto_invertido,
+          data.listTotalInvest[data.listTotalInvest.length - 2].monto_invertido,
+          data.listTotalInvest[data.listTotalInvest.length - 3].monto_invertido,
+        ]
+      });
+    }
+    //Obtener el nombre de los últimos 3 workers de las últimas inversiones
+    for (let itr = 0; itr <= 2; itr++) {
+      if (this.state.id_worker[itr] != '') {
+        const response = await fetch(urlPerfilWorker + this.state.id_worker[itr]);
+        const data = await response.json();
+        this.setState({
+          name_workers: this.state.name_workers.concat([data.profile[0].first_name + ' ' + data.profile[0].last_name])
+        });
+      }
     };
   }
 
