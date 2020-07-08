@@ -8,6 +8,8 @@ const queryWorkers = gets.getAllWorkers;
 // Query by id
 const qidInv = gets.getInvestorById;
 const qidWor = gets.getWorkerById;
+const qUidInv = gets.getInvestorUid;
+const qUidWor = gets.getWorkerUid;
 
 // Post new users inv and wor
 const postInv = posts.createNewInvestor;
@@ -26,4 +28,6 @@ module.exports = {
   postWor,
   delInv,
   delWor,
+  qUidInv,
+  qUidWor,
 };

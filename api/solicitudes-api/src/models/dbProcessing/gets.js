@@ -63,7 +63,7 @@ const getAllProducts = async () => {
 const getSolicitudById = async (req) => {
   try {
     const solicitud = [];
-    const res = await db.query(`SELECT * FROM solicitudes WHERE id_solicitud='${req.params.id}';`);
+    const res = await db.query(`SELECT * FROM solicitudes WHERE id_user='${req.params.idWorker}';`);
     for (const row of res.rows) {
       solicitud.push(row);
     }

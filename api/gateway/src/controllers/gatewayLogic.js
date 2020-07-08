@@ -11,7 +11,7 @@ const solCalculate = async (req, res) => {
   }
 };
 
-// All Solicitud, Product, Product_user
+// Get information
 const allSol = async (req, res) => {
   try {
     const listaSolicitudes = await query.allSolicitudes(req);
@@ -39,7 +39,43 @@ const workerInfo = async (req, res) => {
   }
 };
 
-// POST new solicitud, product, product_user
+const investorUid = async (req, res) => {
+  try {
+    const uuid = await query.invUid(req);
+    return (res.status(200).send(uuid));
+  } catch (e) {
+    return (e);
+  }
+};
+
+const workerUid = async (req, res) => {
+  try {
+    const uuid = await query.workUid(req);
+    return (res.status(200).send(uuid));
+  } catch (e) {
+    return (e);
+  }
+};
+
+const allHistInvest = async (req, res) => {
+  try {
+    const listaHistInvest = await query.allHistInvest(req);
+    return (res.status(200).send(listaHistInvest));
+  } catch (e) {
+    return (e);
+  }
+};
+
+const allTotalInvest = async (req, res) => {
+  try {
+    const listaTotalInvest = await query.alTotalInvest(req);
+    return (res.status(200).send(listaTotalInvest));
+  } catch (e) {
+    return (e);
+  }
+};
+
+// POST new info
 const solicitudPost = async (req, res) => {
   try {
     await query.postSolicitud(req, res);
@@ -76,24 +112,24 @@ const workerPost = async (req, res) => {
   }
 };
 
-// DELETE interes, deuda
-// const deudaDelete = async (req, res) => {
-//   try {
-//     await query.delDeuda(req, res);
-//     return (res.status(200).send('Deuda eliminada.'));
-//   } catch (e) {
-//     return (e);
-//   }
-// };
+const deudaById = async (req, res) => {
+  try {
+    const deuda = await query.queryDeudaById(req);
+    return (res.status(200).send(deuda));
+  } catch (e) {
+    return (e);
+  }
+};
 
-// const interesDelete = async (req, res) => {
-//   try {
-//     await query.delInteres(req, res);
-//     return (res.status(200).send('Interes eliminado.'));
-//   } catch (e) {
-//     return (e);
-//   }
-// };
+// DELETE deuda
+const deudaDelete = async (req, res) => {
+  try {
+    await query.delDeuda(req, res);
+    return (res.status(200).send('Deuda eliminada.'));
+  } catch (e) {
+    return (e);
+  }
+};
 
 // UPDATE  deuda
 const deudaUpdate = async (req, res) => {
@@ -115,4 +151,10 @@ module.exports = {
   workerPost,
   investorPost,
   solCalculate,
+  allHistInvest,
+  allTotalInvest,
+  deudaDelete,
+  deudaById,
+  investorUid,
+  workerUid,
 };

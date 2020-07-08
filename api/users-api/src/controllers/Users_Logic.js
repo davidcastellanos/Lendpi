@@ -32,6 +32,23 @@ const worId = async (req, res) => {
   }
 };
 
+const invUid = async (req, res) => {
+  try {
+    const userInv = await query.qUidInv(req);
+    return (res.status(200).send(userInv));
+  } catch (e) {
+    return (e);
+  }
+};
+
+const worUid = async (req, res) => {
+  try {
+    const userWor = await query.qUidWor(req);
+    return (res.status(200).send(userWor));
+  } catch (e) {
+    return (e);
+  }
+};
 // POST new investor or worker
 const invPost = async (req, res) => {
   try {
@@ -79,4 +96,6 @@ module.exports = {
   worPost,
   worDel,
   invDel,
+  invUid,
+  worUid,
 };

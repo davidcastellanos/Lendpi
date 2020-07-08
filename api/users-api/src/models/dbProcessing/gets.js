@@ -54,9 +54,33 @@ const getWorkerById = async (req) => {
   }
 };
 
+const getInvestorUid = async (req) => {
+  try {
+    let uuid;
+    const res = await db.query(`SELECT id_user FROM investors WHERE email='${req.params.email}';`);
+    uuid = res.rows[0].id_user;
+    return ( uuid );
+  } catch (e) {
+    return (e);
+  }
+};
+
+const getWorkerUid = async (req) => {
+  try {
+    let uuid;
+    const res = await db.query(`SELECT id_user FROM workers WHERE email='${req.params.email}';`);
+    uuid = res.rows[0].id_user;
+    return ( uuid );
+  } catch (e) {
+    return (e);
+  }
+};
+
 module.exports = {
   getAllInvestors,
   getAllWorkers,
   getInvestorById,
   getWorkerById,
+  getInvestorUid,
+  getWorkerUid,
 };

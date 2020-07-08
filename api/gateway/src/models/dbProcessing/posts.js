@@ -48,10 +48,12 @@ const createNewInvestor = async (req) => {
     const today = new Date();
     const date = `${(today.getMonth() + 1).toString()}-${today.getDate().toString()}-${today.getFullYear().toString()}`;
     const res = await axios.post('https://database-lendpi-users.herokuapp.com/users/add/investors', {
-      id_user: req.body.id_user,
+      id_user: uuidv4(),
       first_name: req.body.first_name,
       last_name: req.body.last_name,
+      token: req.body.token,
       email: req.body.email,
+      photo: req.body.photo,
     });
     return (res);
   } catch (e) {
@@ -64,10 +66,12 @@ const createNewWorker = async (req) => {
     const today = new Date();
     const date = `${(today.getMonth() + 1).toString()}-${today.getDate().toString()}-${today.getFullYear().toString()}`;
     const res = await axios.post('https://database-lendpi-users.herokuapp.com/users/add/workers', {
-      id_user: req.body.id_user,
+      id_user: uuidv4(),
       first_name: req.body.first_name,
       last_name: req.body.last_name,
+      token: req.body.token,
       email: req.body.email,
+      photo: req.body.photo,
     });
     return (res);
   } catch (e) {

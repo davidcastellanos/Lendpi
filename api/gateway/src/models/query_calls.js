@@ -1,7 +1,7 @@
 // Handle the requests and call corresponding method functions for processing
 const gets = require('./dbProcessing/gets');
 const posts = require('./dbProcessing/posts');
-// const del = require('./dbProcessing/deletes');
+const del = require('./dbProcessing/deletes');
 const update = require('./dbProcessing/puts');
 const helper = require('./dbProcessing/helpers/helpers');
 
@@ -10,8 +10,15 @@ const queryCalculoFinal = helper.getCalResult;
 
 // Query All objects
 const allSolicitudes = gets.getAllSolicitudes;
+
+// Query by a parameter
 const investorProfile = gets.getInvProfile;
 const workerProfile = gets.getWorProfile;
+const invUid = gets.getInvUid;
+const workUid = gets.getWorUid;
+const allHistInvest = gets.getAllHistInvest;
+const alTotalInvest = gets.getAllTotalInvest;
+const queryDeudaById = gets.getDeudaById;
 
 // Post new objects
 const postSolicitud = posts.createNewSolicitud;
@@ -20,11 +27,12 @@ const postInvestor = posts.createNewInvestor;
 const postWorker = posts.createNewWorker;
 
 // Delete objects
-// const delDeuda = del.deleteDeuda;
-// const delInteres = del.deleteInteres;
+const delDeuda = del.deleteDeuda;
 
 // Update objects
 const putDeuda = update.updateDeuda;
+
+
 
 module.exports = {
   allSolicitudes,
@@ -36,4 +44,10 @@ module.exports = {
   postWorker,
   postInvestor,
   queryCalculoFinal,
+  alTotalInvest,
+  allHistInvest,
+  delDeuda,
+  queryDeudaById,
+  invUid,
+  workUid,
   };
