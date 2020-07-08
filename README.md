@@ -4,37 +4,37 @@
 
 - App
 
-# Configuración del Entorno de Desarrollo
+# Development Environment Configuration
 
-- Crear una nueva carpeta con el nombre “Lendpi”.
+- Create a new folder called “Lendpi”.
 
-- Dentro de la nueva carpeta creamos un nuevo proyecto de React Native llamado **app**:
+- Inside the folder create a new react-native project called **app**:
 
     ```bash
   npx react-native init app
   ```
 
-- Descargar los archivos del repositorio de GitHub.
+- Download the files from this repository.
 
     ```bash
   git clone https://github.com/Virteip/Lendpi.git
   ```
 
-- Ingresamos a la carpeta del repositorio.
+- Enter the cloned project's folder.
 
   ```bash
   cd Lendpi
   ```
 
-- Cambiamos a la rama develop.
+- Switch to the 'develop' branch.
 
   ```bash
   git checkout develop
   ```
 
-- Ingresar a la carpeta raíz del proyecto y eliminar los archivos **App.js** e **index.js**.
+- Delete the following files from the new project you just created root folder: **App.js** and **index.js**.
 
-- Copie los siguientes archivos y carpetas desde la carpeta **Lendpi** hacia la carpeta raíz del proyecto:
+- Copy the following files from the cloned **Lendpi** folder to the root of the new project you created.
   - assets/
   - components/
   - model/
@@ -42,13 +42,13 @@
   - App.js
   - Index.js
 
-- Ingresar en el archivo `android/app/build.gradle` y agregar al final del archivo:
+- Go to the file `android/app/build.gradle` and add the following line at the end of the file:
 
     ```
     apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
     ```
 
-- Descargar los siguientes módulos dentro de la carpeta raíz:
+- Download and install the following modules from the project's root folder:
   - yarn add @react-navigation/native
   - yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
   - yarn add react-native-paper
@@ -63,6 +63,6 @@
   - yarn add @react-native-community/google-signin
   - yarn add @react-native-community/toolbar-android
   
-- Ejecutar la app
+- Execute the app
   
   - npx react-native run-android
