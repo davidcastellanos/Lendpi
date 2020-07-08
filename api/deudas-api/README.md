@@ -1,39 +1,34 @@
-﻿# Users API
+# Debts API
 
-Api related to handling Users in Lendpi.
+Api related to handling Debts in Lendpi.
 
 ## Endpoints:
-Base url: https://database-lendpi-users.herokuapp.com/users/
+Base url: https://database-lendpi-deuda.herokuapp.com/deudas/
  - ## Get:
-	 - List all investors: **/investors**
-	 - List all workers: **/workers**
-	 - List investor info by id: **/investors/:id**
-	 - List worker info by id: **/workers/:id**
-	 - List specific investor uuid: **/investor/id/:email**
-	 - List specific worker uuid: **/worker/id/:email**
-
+	 - List all debts: **/all**
+	 - List interest rates: **/all/intereses**
+	 - List single worker debt by id: **/:id**
  - ## Post:
-	 - Post new investor: **/add/investors**
+	 - Post new debt: **/new/deuda**
 	##### json body: 
-          { id_user: ,
-          first_name: ,
-          last_name: ,
-          token: ,
-          email: ,
-          photo: , }
-       
-	 - Post all worker: **/add/worker**
+          { id_deuda: ,
+          id_worker: ,
+          pendiente: ,
+          tasas_de_interes: ,
+         }
+
+	- Post new interest: **/new/deuda**
 	##### json body: 
-         { id_user: ,
-          first_name: ,
-          last_name: ,
-          token: ,
-          email: ,
-          photo: , }
-	
+          { id_tasa: ,
+          porcentaje: ,
+          }
+
+- ## Update:
+	 - Update debt remainder **/update/deuda/:idWorker**
+	 ##### json body: 
+          { pendiente: ,}
 
  - ## Delete:
-	 - List all investors: **/delete/investors/:id**
-	 - List all workers: **/delete/workers/:id**
-
+	 - Delete debt for worker with worker id: **/delete/deuda/:id**
+	 - Delete interest by id: **/delete/interes/:id**
 
