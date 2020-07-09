@@ -82,10 +82,10 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
 
 
 ## Authors
-- **Sergio Pietri ** 
+- **Sergio Pietri** 
   - **@SergioPietri** 
   - https://github.com/Virteip/
-- **Julián Sandoval **
+- **Julián Sandoval**
   - **@derhks** 
   - https://github.com/Derhks
 - **Yojan Castellanos**
