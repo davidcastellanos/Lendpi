@@ -103,13 +103,13 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
 ## Authors
 
 - **Sergio Pietri** 
-  - <img src="https://i.blogs.es/3c991e/twitter-bird/450_1000.png" alt="Resultado de imagen para logo twitter" width="40px"/>**@SergioPietri** 
+  - <img src="https://i.blogs.es/3c991e/twitter-bird/450_1000.png" alt="Resultado de imagen para logo twitter" width="20px"/>**@SergioPietri** 
   - https://github.com/Virteip/
 - **Julián Sandoval**
-  - <img src="https://i.blogs.es/3c991e/twitter-bird/450_1000.png" alt="Resultado de imagen para logo twitter" width="40px"/>**@derhks** 
+  - <img src="https://i.blogs.es/3c991e/twitter-bird/450_1000.png" alt="Resultado de imagen para logo twitter" width="20px"/>**@derhks** 
   - https://github.com/Derhks
 - **Yojan Castellanos**
-  - <img src="https://i.blogs.es/3c991e/twitter-bird/450_1000.png" alt="Resultado de imagen para logo twitter" width="40px"/>**@davcastellanosp** 
+  - <img src="https://i.blogs.es/3c991e/twitter-bird/450_1000.png" alt="Resultado de imagen para logo twitter" width="20px"/>**@davcastellanosp** 
   - https://github.com/davidcastellanos
 
 
