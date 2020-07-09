@@ -1,18 +1,18 @@
 import React from 'react';
 import { useTheme } from 'react-native-paper';
+import { AuthContext } from '../components/context';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { View, Text, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-community/google-signin';
-import { AuthContext } from '../components/context';
 
-const WebClientID = '8133386440-jl74s0b7u2me6mbfogncubunrbjhlfr7.apps.googleusercontent.com';
 
 const SignInScreen = ({navigation}) => {
   const { colors } = useTheme();
   const { signIn } = React.useContext(AuthContext);
-
+  const WebClientID = '8133386440-jl74s0b7u2me6mbfogncubunrbjhlfr7.apps.googleusercontent.com';
+  
   GoogleSignin.configure({
     webClientId: WebClientID, // client ID of type WEB for your server(needed to verify user ID and offline access)
     offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER

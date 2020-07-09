@@ -44,19 +44,19 @@ export function DrawerContent(props) {
                       size={size}
                 />
               )}
-              label="Solicitud"
+              label="Home"
               onPress={() => {props.navigation.navigate('Home')}}
             />
             <DrawerItem
               icon={({color, size}) => (
                 <Icon
-                  name="bookmark-outline"
+                  name="cash"
                   color={color}
                   size={size}
                 />
               )}
-              label="Historial Inversiones"
-              onPress={() => {props.navigation.navigate('BookmarkScreen')}}
+              label="Historial de Inversiones"
+              onPress={() => {props.navigation.navigate('Inversiones')}}
             />
           </Drawer.Section>
           <Drawer.Section title="Preferencias">

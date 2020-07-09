@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { DataTable } from 'react-native-paper';
 import { ScrollView, Text, Image, View, StyleSheet } from 'react-native';
 
-
 export class HistorialInversiones extends Component {
   constructor(props) {
     super(props);
@@ -18,15 +17,15 @@ export class HistorialInversiones extends Component {
 
   async hisInvestor() {
     //Obtener el uuid del investor
-    const urlIdInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/investor/id/';
-    const dataId = await fetch(urlIdInvestor + this.props.email);
-    const res = await dataId.json();
-    const idInvestor = res.uuid[0];
+    let urlIdInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/investor/id/';
+    let dataId = await fetch(urlIdInvestor + this.props.email);
+    let res = await dataId.json();
+    let idInvestor = res.uuid[0];
     //Obtener todo el historial de inversiones del investor
-    const urlHistorialInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/all/historial_inversiones/';
-    const urlPerfilWorker = 'https://lendpi-gateway.herokuapp.com/api-gateway/worker-profile/';
-    const response = await fetch(urlHistorialInvestor + idInvestor);
-    const data = await response.json();
+    let urlHistorialInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/all/historial_inversiones/';
+    let urlPerfilWorker = 'https://lendpi-gateway.herokuapp.com/api-gateway/worker-profile/';
+    let response = await fetch(urlHistorialInvestor + idInvestor);
+    let data = await response.json();
 
     //Guarda las últimas 3 inversiones
     if (data.listTotalInvest.length == 0) {

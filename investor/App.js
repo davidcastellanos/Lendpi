@@ -23,14 +23,11 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { GoogleSignin } from '@react-native-community/google-signin';
-
-
 import { AuthContext } from './components/context';
 import RootStackScreen from './screens/RootStackScreen';
 import MainTabScreen from './screens/MainTabScreen';
 import ProductosScreen from './screens/ProductosScreen';
-import DetailsScreen from './screens/DetailsScreen';
-import ProfileScreen from './screens/ProfileScreen';
+import SolicitudesScreen from './screens/SolicitudesScreen';
 import { DrawerContent } from './screens/DrawerContent';
 
 const Drawer = createDrawerNavigator();
@@ -69,7 +66,7 @@ const App = () => {
     userEmail: null,
     userPhoto: null,
   };
-
+ 
   const loginReducer = (prevState, action) => {
     switch( action.type ) {
       case 'RETRIEVE_TOKEN':
@@ -99,13 +96,13 @@ const App = () => {
   };
 
   const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState);
- 
+
   const authContext = React.useMemo(() => ({
     signIn: async(foundUser) => {
-      const userName = foundUser[0].user.givenName;
-      const lastName = foundUser[0].user.familyName;
-      const userEmail = foundUser[0].user.email;
-      const userPhoto = foundUser[0].user.photo;
+      let userName = foundUser[0].user.givenName;
+      let lastName = foundUser[0].user.familyName;
+      let userEmail = foundUser[0].user.email;
+      let userPhoto = foundUser[0].user.photo;
 
       dispatch({
         type: 'LOGIN',
@@ -159,8 +156,7 @@ const App = () => {
             <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
               <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
               <Drawer.Screen name="ProductosScreen" component={ProductosScreen} />
-              <Drawer.Screen name="DetailsScreen" component={DetailsScreen} />
-              <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
+              <Drawer.Screen name="SolicitudesScreen" component={SolicitudesScreen} />
             </Drawer.Navigator>
           )
           :

@@ -33,7 +33,7 @@ const MainTabScreen = () => (
           tabBarLabel: 'Inversiones',
           tabBarColor: '#FA5C61',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-notifications" color={color} size={26} />
+            <Icon name="ios-cash" color={color} size={26} />
           ),
         }}
       />

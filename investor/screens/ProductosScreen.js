@@ -1,4 +1,5 @@
 import React from 'react';
+import { FAB } from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
@@ -8,7 +9,7 @@ const ProductosScreen = ( {navigation} ) => {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Productos</Text>
-        <TouchableOpacity onPress={()=>navigation.navigate('DetailsScreen')}>
+        <TouchableOpacity onPress={()=>navigation.navigate('SolicitudesScreen')}>
           <LinearGradient
             colors={['white', 'white']}
             style={styles.lend}
@@ -21,7 +22,7 @@ const ProductosScreen = ( {navigation} ) => {
             <Text style={styles.textButtom}>Motos</Text>
           </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>navigation.navigate('DetailsScreen')}>
+        <TouchableOpacity onPress={()=>navigation.navigate('SolicitudesScreen')}>
           <LinearGradient
             colors={['white', 'white']}
             style={styles.lend}
@@ -34,6 +35,12 @@ const ProductosScreen = ( {navigation} ) => {
           <Text style={styles.textButtom}>Bicicletas</Text>
           </LinearGradient>
         </TouchableOpacity>
+        <FAB
+          style={styles.fab}
+          icon="arrow-left"
+          onPress={()=>navigation.navigate('Home')}
+          color='#FFF'
+        />
       </View>
     );
 };
@@ -75,6 +82,13 @@ const styles = StyleSheet.create({
     color: '#FA5C61',
     fontWeight: 'bold',
     fontSize: 24,
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#FA5C61',
   },
 });
 
