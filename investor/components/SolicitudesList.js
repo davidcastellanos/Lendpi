@@ -51,9 +51,9 @@ export class ListAllSolicitudes extends Component {
 
   async getIdInvestor() {
     const urlIdInvestor = 'https://lendpi-gateway.herokuapp.com/api-gateway/investor/id/';
-    const data = await fetch(urlIdInvestor + this.props.email);
-    const res = await data.json();
-    const idInvestor = res.uuid[0];
+    let data = await fetch(urlIdInvestor + this.props.email);
+    let res = await data.json();
+    let idInvestor = res.uuid[0];
     this.setState({
       id: idInvestor,
     });
@@ -61,18 +61,18 @@ export class ListAllSolicitudes extends Component {
 
   async listup() {
     let newList = [];
-    const res = await fetch(
+    let res = await fetch(
       'https://lendpi-gateway.herokuapp.com/api-gateway/all-solicitudes/moto',
     );
-    const clean = await res.json();
+    let clean = await res.json();
     for (let row in clean.listaCategoria) {
       newList.push(clean.listaCategoria[row]);
       try {
-        const res2 = await fetch(
+        let res2 = await fetch(
           'https://lendpi-gateway.herokuapp.com/api-gateway/worker-profile/' +
             clean.listaCategoria[row].id_user,
         );
-        const clean2 = await res2.json();
+        let clean2 = await res2.json();
         if (clean2.profile[0].photo != undefined) {
           clean.listaCategoria[row].photo = clean2.profile[0].photo;
         }
@@ -92,7 +92,7 @@ export class ListAllSolicitudes extends Component {
   }
 
   render() {
-    const {modalVisible} = this.state;
+    let {modalVisible} = this.state;
 
     if (this.state.loading){
       return (
