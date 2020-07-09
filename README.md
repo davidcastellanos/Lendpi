@@ -34,13 +34,13 @@
 
 - Delete the following files from the new project you just created root folder: **App.js** and **index.js**.
 
-- Copy the following files from the cloned **Lendpi** folder to the root of the new project you created.
+- Copy the following files from the cloned **Lendpi**/investor or **Lendpi**/worker folder to the root of the new project you created.
   - assets/
   - components/
   - model/
   - screens/
   - App.js
-  - Index.js
+  - index.js
 
 - Go to the file `android/app/build.gradle` and add the following line at the end of the file:
 
@@ -66,3 +66,7 @@
 - Execute the app
   
   - npx react-native run-android
+
+
+
+![App Lendpi Worker Demo](appworker.gif)
