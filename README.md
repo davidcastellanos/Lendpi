@@ -70,3 +70,5 @@
 
 
 ![App Lendpi Worker Demo](appworker.gif)
+
+![App Lendpi Investor Demo](appinvestor.gif)
