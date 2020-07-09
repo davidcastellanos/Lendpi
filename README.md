@@ -70,3 +70,28 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
   
   - npx react-native run-android
 
+
+
+## Built With
+
+- [Javascript](https://www.javascript.com/) - Programming language
+- [PostgreSQL](https://www.postgresql.org/) - Database
+- [Express](https://expressjs.com/) - Framework
+- [React Native](https://reactnative.dev/) - Framework
+- [Node](https://nodejs.org/en/) 
+
+
+## Authors
+- **Sergio Pietri ** 
+  - **@SergioPietri** 
+  - https://github.com/Virteip/
+- **Julián Sandoval **
+  - **@derhks** 
+  - https://github.com/Derhks
+- **Yojan Castellanos**
+  - **@davcastellanosp** 
+  - https://github.com/davidcastellanos
+
+
+## License
+Public Domain. No copy write protection.
