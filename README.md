@@ -3,6 +3,25 @@
 
 Lendpi is a crowdlending service created alongside Rappi whose main focus is to help people gain easier access to a loan. Currently the transactions stage of the application is emulated with a database but it shows what the objective and the functionality of the project is. This was created using the P.E.R.N stack and mounted on Heroku instances to handle the databases and microservices.
 
+
+
+## Table of Content
+
+- Examples of use
+
+- Development Environment Configuration
+
+- Built With
+
+- Authors
+
+- License
+
+
+
+
+## Examples of use
+
 ![App Lendpi Worker Demo](appworker.gif)
 
 ![App Lendpi Investor Demo](appinvestor.gif)
@@ -82,6 +101,7 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
 
 
 ## Authors
+
 - **Sergio Pietri** 
   - **@SergioPietri** 
   - https://github.com/Virteip/
@@ -94,4 +114,5 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
 
 
 ## License
+
 Public Domain. No copy write protection.
