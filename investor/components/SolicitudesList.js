@@ -111,6 +111,7 @@ export class ListAllSolicitudes extends Component {
                 <Card.Content>
                   <Title> Total Solicitado: {item.valor_financiacion} </Title>
                 </Card.Content>
+                <Card.Cover source={{ uri: item.photo }} />
                 <Card.Actions >
                   <Button
                     mode="contained"
