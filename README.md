@@ -1,8 +1,11 @@
 ![Holberton school logo](http://imgfz.com/i/j5QenPM.png)
-# Rappi App
+# Lendpi App
 
+Lendpi is a crowdlending service created alongside Rappi whose main focus is to help people gain easier access to a loan. Currently the transactions stage of the application is emulated with a database but it shows what the objective and the functionality of the project is. This was created using the P.E.R.N stack and mounted on Heroku instances to handle the databases and microservices.
 
-- App
+![App Lendpi Worker Demo](appworker.gif)
+
+![App Lendpi Investor Demo](appinvestor.gif)
 
 # Development Environment Configuration
 
@@ -67,8 +70,3 @@
   
   - npx react-native run-android
 
-
-
-![App Lendpi Worker Demo](appworker.gif)
-
-![App Lendpi Investor Demo](appinvestor.gif)
