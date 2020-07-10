@@ -104,13 +104,13 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
 
 - **Sergio Pietri** 
   - <img src="https://i.blogs.es/3c991e/twitter-bird/450_1000.png" alt="Resultado de imagen para logo twitter" width="20px"/>**@SergioPietri** 
-  - <img src="https://img.icons8.com/material-sharp/24/000000/github.png" alt="Resultado de imagen para logo twitter" width="20px"/> https://github.com/Virteip/
+  - <img src="https://img.icons8.com/material-sharp/24/000000/github.png" alt="Resultado de imagen para logo twitter" width="17px"/> https://github.com/Virteip/
 - **Julián Sandoval**
   - <img src="https://i.blogs.es/3c991e/twitter-bird/450_1000.png" alt="Resultado de imagen para logo twitter" width="20px"/>**@derhks** 
-  - <img src="https://img.icons8.com/material-sharp/24/000000/github.png" alt="Resultado de imagen para logo twitter" width="20px"/> https://github.com/Derhks
+  - <img src="https://img.icons8.com/material-sharp/24/000000/github.png" alt="Resultado de imagen para logo twitter" width="17px"/> https://github.com/Derhks
 - **Yojan Castellanos**
   - <img src="https://i.blogs.es/3c991e/twitter-bird/450_1000.png" alt="Resultado de imagen para logo twitter" width="20px"/>**@davcastellanosp** 
-  - <img src="https://img.icons8.com/material-sharp/24/000000/github.png" alt="Resultado de imagen para logo twitter" width="20px"/> https://github.com/davidcastellanos
+  - <img src="https://img.icons8.com/material-sharp/24/000000/github.png" alt="Resultado de imagen para logo twitter" width="17px"/> https://github.com/davidcastellanos
 
 
 ## License
