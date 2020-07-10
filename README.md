@@ -8,13 +8,10 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
 ## Table of Content
 
 - Examples of use
-
+- C4 Model
 - Development Environment Configuration
-
 - Built With
-
 - Authors
-
 - License
 
 
@@ -26,7 +23,16 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
 
 ![App Lendpi Investor Demo](appinvestor.gif)
 
-# Development Environment Configuration
+
+
+## C4 Model
+
+
+![C4 Model](c4-model.png)
+
+
+
+## Development Environment Configuration
 
 - Create a new folder called “Lendpi”.
 
