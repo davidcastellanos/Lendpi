@@ -29,7 +29,7 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
 ## C4 Model
 
 
-![C4 Model](c4model.png)
+![C4 Model](c4-model.png)
 
 
 ## Api Request Flow
