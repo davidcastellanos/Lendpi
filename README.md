@@ -10,6 +10,7 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
 - Examples of use
 - C4 Model
 - Api Request Flow
+- Authentication flow
 - Development Environment Configuration
 - Built With
 - Authors
@@ -36,6 +37,12 @@ Lendpi is a crowdlending service created alongside Rappi whose main focus is to 
 
 
 ![Api Request Flow](apirequestflow.png)
+
+
+## Authentication Flow
+
+
+![Authentication Flow](authflow.png)
 
 
 ## Development Environment Configuration
